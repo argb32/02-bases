@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 
 @Component({
   selector: 'dragonball-character-add',
@@ -10,7 +10,7 @@ export class CharacterAdd {
   name = signal('')
   power = signal(0);
 
-
+  newCharacter = output<Character>();
 
 
   addCharacter() {
@@ -19,11 +19,12 @@ export class CharacterAdd {
     }
 
     const newCharacter: Character = {
-      id: 1000,
+      id: Math.floor(Math.random() * 1000),
       name: this.name(),
       power: this.power()
     }
     // this.characters.update(list => [...list, newCharacter]);
+    this.newCharacter.emit(newCharacter);
     console.log({ newCharacter })
 
     this.resetFields()

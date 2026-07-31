@@ -15,14 +15,18 @@ export class CounterPageComponent {
 
   increaseBy(value: number) {
     this.counter += value;
+    this.counterSignal.update(currentValue => currentValue + 1)
   }
 
   resetCounter() {
     this.counter = 0;
+    this.counterSignal.set(0);
   }
 
   decreaseBy(value: number) {
     this.counter -= value;
+    this.counterSignal.update(currentValue => currentValue - 1)
+
   }
 
 }
